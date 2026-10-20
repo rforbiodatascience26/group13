@@ -1,7 +1,8 @@
 ---
-title: "Assignment07"
+title: "Assignment07_g13"
 format: html
 editor: visual
+author: s224991 (Alma), s215081 (Magnus), s194659 (Jakob), s215049 (Fredrik)
 ---
 
 ```{r}

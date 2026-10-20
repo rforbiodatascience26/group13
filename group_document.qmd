@@ -5,7 +5,6 @@ format: html
 
 ### S194659 - Jakob
 
-
 ### S215049 - Fredrik
 
 ```{r}
@@ -24,12 +23,9 @@ print("hello bitches")
 
 ### S215049 - Frederik
 
-
-
-### S215081 - Magnus
+### 
 
 ### S215081 - MagnuX
-
 
 Jeg vil fra nu af tiltales MagnuX
 

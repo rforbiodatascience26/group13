@@ -78,8 +78,6 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
   ungroup()
 ```
 
-## Fredrik (medium tissemand)
-
 ```{r}
 
 ```

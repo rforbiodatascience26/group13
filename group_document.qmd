@@ -5,7 +5,15 @@ format: html
 
 ### S194659 - Jakob
 
-### S215049 - Frederik
+### S215049 - Fredrik
+
+```{r}
+four <- 2 + 2
+minus_1 = four - 1
+
+paste("that's", minus_1) |> 
+paste("quick maf")
+```
 
 ### S215081 - Magnus
 

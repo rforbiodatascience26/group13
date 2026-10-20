@@ -13,7 +13,7 @@ editor_options:
 #| message: false
 #| warning: false
 
-rm(list = ls())
+# rm(list = ls()) # un-comment this for first run of script
 
 library("tidyverse")
 library("broom")
@@ -113,7 +113,7 @@ gravier_estimates |>
 
 ```
 
-## Jakob
+## Jakob - s194659 (change to informative header)
 
 ```{r}
 

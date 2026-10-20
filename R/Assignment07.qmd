@@ -89,22 +89,23 @@ gravier_estimates |>
     aes(x = estimate, 
         y = fct_reorder(Gene, estimate))) +
   
-  geom_point() +
-  
   geom_errorbar(
     aes(xmin = `conf.low`, 
-        xmax = `conf.high`)) +
+        xmax = `conf.high`,
+        color = estimate)) +  
   
-  geom_vline(xintercept = 0) +
+  geom_point(aes(color = estimate)) + scale_colour_gradient(low = "red", high = "green") +
+
+  geom_vline(xintercept = 0, color = "grey") +
   
   theme_minimal() +
   
-  labs(y = "",
+  labs(y = "Genes",
        x = "Estimates (95% CIs)",
        title = "Genes Associated with Early Metastasis in Small Node-Negative Breast Carcinoma",
        caption = "Data from DOI: 10.1002/gcc.20820") +
   
-  theme(plot.title = element_text(hjust = 1))
+  theme(plot.title = element_text(hjust = 1), axis.text.y = element_text(size = 5), legend.position = "none")
 ```
 
 ## AlmaX

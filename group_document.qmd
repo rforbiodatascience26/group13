@@ -15,4 +15,6 @@ print("hello bitches")
 
 ### S215081 - Magnus
 
-### S224991 - Alma
+### S224991 - Almax
+
+Hej det er mig

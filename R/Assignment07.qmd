@@ -95,8 +95,16 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
 
 ```
 
-## Magnus
+## Creating tidy data
 
-```{r}
+Working with data can be can be difficult, especially because everyone does it differently. Tidy data solves this problem. A "tidy" data set is defined by:
 
-```
+1.  Every variable must have its own column
+2.  Every observation must have its own row
+3.  Every variable must have its own cell
+
+By integrating these rules, data becomes much simpler and easier to work with.
+
+### Wrangling the data
+
+For this assignment, we will be working with the gravier data set, which looks at metastasis for breast cancer.

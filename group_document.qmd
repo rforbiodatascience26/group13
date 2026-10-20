@@ -34,3 +34,10 @@ x+y
 ### S224991 - AlmaX
 
 Hej det er mig
+
+#### AlmaX - New feature
+
+```{r}
+help <- "Help me, I'm lost"
+print(help)
+```

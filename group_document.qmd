@@ -5,6 +5,7 @@ format: html
 
 ### S194659 - Jakob
 
+
 ### S215049 - Fredrik
 
 ```{r}
@@ -15,6 +16,17 @@ paste("that's", minus_1) |>
 paste("quick maf")
 ```
 
+Here is I. Jakob the admin
+
+```{r}
+print("hello bitches")
+```
+
+### S215049 - Frederik
+
+
 ### S215081 - Magnus
 
-### S224991 - Alma
+### S224991 - Almax
+
+Hej det er mig

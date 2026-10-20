@@ -1,14 +1,19 @@
 ---
-title: "Assignment07"
+title: "Assignment07_g13"
 format: html
+  html: 
+    embed-resources: true
 editor: visual
+author: "s224991 (Alma), s215081 (Magnus), s194659 (Jakob), s215049 (Fredrik)"
+editor_options:
+  chunk_output_type: inline
 ---
 
 ```{r}
 #| message: false
 #| warning: false
 
-rm(list = ls())
+# rm(list = ls()) # un-comment this for first run of script
 
 library("tidyverse")
 library("broom")
@@ -35,7 +40,7 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 load(file = str_c(raw_dir, data_file))
 ```
 
-## Data Wrangling (copy from last assignment)
+## Data Wrangling (copied from last assignment)
 
 ```{r}
 gravier_clean <- gravier |>
@@ -77,10 +82,29 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
   ungroup()
 ```
 
-## Fredrik (medium tissemand)
-
 ```{r}
-
+gravier_estimates |> 
+  filter(is_significant == "yes") |> 
+  ggplot(
+    aes(x = estimate, 
+        y = fct_reorder(Gene, estimate))) +
+  
+  geom_point() +
+  
+  geom_errorbar(
+    aes(xmin = `conf.low`, 
+        xmax = `conf.high`)) +
+  
+  geom_vline(xintercept = 0) +
+  
+  theme_minimal() +
+  
+  labs(y = "",
+       x = "Estimates (95% CIs)",
+       title = "Genes Associated with Early Metastasis in Small Node-Negative Breast Carcinoma",
+       caption = "Data from DOI: 10.1002/gcc.20820") +
+  
+  theme(plot.title = element_text(hjust = 1))
 ```
 
 ## AlmaX
@@ -89,10 +113,37 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
 
 ```
 
-## Jakob
+## Jakob - s194659 (change to informative header)
 
 ```{r}
-
+gravier_estimates |> 
+  
+  ggplot(
+    aes(x=estimate, 
+        y = -log10(`p.value`), 
+        colour = ifelse(is_significant == "no", "blue", "red"), 
+        label = ifelse(is_significant == "yes", Gene, ""))) +
+  
+  geom_point(show.legend = F,
+             alpha = 0.5, 
+             size = 1) +
+  
+  geom_text_repel(size = 2, 
+                  show.legend = F, 
+                  max.overlaps = 20) +
+  
+  geom_hline(yintercept = 0) +
+  
+  theme_minimal() +
+  
+  labs(y = "-log10(p)",
+       x = "Estimates",
+       title = "Genes Associated with Early Metastasis in Small Node-Negative Breast Carcinoma",
+       caption = "Data from DOI: 10.1002/gcc.20820",
+       subtitle = "Genes highlighted in turquoise were significant after multiple testing correction") +
+  
+  theme(plot.title = element_text(hjust = 1),
+        plot.subtitle = element_text(hjust = 1))
 ```
 
 ## Creating tidy data

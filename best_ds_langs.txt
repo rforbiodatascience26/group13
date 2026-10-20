@@ -6,7 +6,7 @@ format: html
 Top 10 Bio Data Science Languages of ALL Time:
 10. It is 
 9. Impossible
-8. to rank them
+8. Excel macros
 7. Because
 6. programming is subjective
 5. and everyone

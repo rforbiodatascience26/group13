@@ -5,6 +5,12 @@ format: html
 
 ### S194659 - Jakob
 
+Here is I. Jakob the admin
+
+```{r}
+print("hello bitches")
+```
+
 ### S215049 - Fredrik
 
 ```{r}
@@ -23,8 +29,6 @@ print("hello bitches")
 
 ### S215049 - Frederik
 
-### 
-
 ### S215081 - MagnuX
 
 Jeg vil fra nu af tiltales MagnuX
@@ -35,6 +39,6 @@ y <- 2
 x+y
 ```
 
-### S224991 - Almax
+### S224991 - AlmaX
 
 Hej det er mig

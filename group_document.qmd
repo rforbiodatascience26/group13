@@ -29,6 +29,15 @@ paste("that's", minus_1) |>
 paste("quick maf")
 ```
 
+#### New feature
+
+```{r}
+paste("Ctrl+Alt+I makes a new chunk")
+ctrl <- 1
+alt <- 1
+ctrl + alt
+```
+
 ### S215081 - MagnuX
 
 Jeg vil fra nu af tiltales MagnuX

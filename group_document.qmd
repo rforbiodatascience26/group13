@@ -1,0 +1,12 @@
+---
+title: "group_document"
+format: html
+---
+
+### S194659 - Jakob
+
+### S215049 - Frederik
+
+### S215081 - Magnus
+
+### S224991 - Alma

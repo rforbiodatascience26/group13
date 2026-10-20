@@ -1,0 +1,30 @@
+---
+title: "Assignment07"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+{r}
+raw_dir <- "data/_raw/"
+data_file <- "gravier.RData"
+data_loc <- "https://github.com/ramhiser/datamicroarray/raw/master/data/"
+
+# Allow R to create nested directories
+if( !dir.exists(raw_dir) ){
+  dir.create(path = raw_dir, recursive = TRUE)
+}
+
+# Download file
+if( !file.exists(str_c(raw_dir, data_file)) ){
+  download.file(
+    url = str_c(data_loc, data_file),
+    destfile = str_c(raw_dir, data_file)
+  )
+}
+
+# Load the data
+load(file = str_c(raw_dir, data_file))
+```

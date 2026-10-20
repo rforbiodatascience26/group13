@@ -5,7 +5,14 @@ editor: visual
 ---
 
 ```{r}
+#| message: false
+#| warning: false
+
+rm(list = ls())
+
 library("tidyverse")
+library("broom")
+library("ggrepel")
 
 raw_dir <- "../data/_raw/"
 data_file <- "gravier.RData"
@@ -28,10 +35,68 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 load(file = str_c(raw_dir, data_file))
 ```
 
+## Data Wrangling (copy from last assingment)
+
+```{r}
+gravier_clean <- gravier |>
+  bind_cols() |>
+  as_tibble()
+
+gravier_clean_aug <- gravier_clean |>
+  mutate(y = case_when(y == "poor" ~ 1,
+                       y == "good" ~ 0)) |> 
+  relocate(early_metastasis = y)
+
+gravier_clean_aug_long <- gravier_clean_aug |> 
+  pivot_longer(cols = -early_metastasis,
+               names_to = "Gene",
+               values_to = "log2_expr_level")
+
+gravier_clean_aug_long_nested <- gravier_clean_aug_long |> 
+  group_by(Gene) |> 
+  nest() |> 
+  mutate(model_object = map(.x = data,
+                   .f = ~lm(formula = log2_expr_level ~ early_metastasis,
+                            data = .x))) |> 
+  ungroup()
+
+gravier_clean_aug_long_nested <-  gravier_clean_aug_long_nested |> 
+  mutate(model_object_tidy = map(.x = model_object,
+                                 .f = ~pluck(.x) |> 
+                                   tidy(conf.int = TRUE,
+                                        conf.level = 0.95),
+                                 data = .x))
+
+gravier_estimates <- gravier_clean_aug_long_nested |> 
+  unnest(model_object_tidy) |> 
+  filter(term == "early_metastasis") |> 
+  select(c("Gene", "p.value", "estimate", "conf.low", "conf.high")) |> 
+  mutate("q.value" = p.adjust(`p.value`),
+         "is_significant" = case_when(`q.value` < 0.05 ~ "yes",
+                                      `q.value` >= 0.05 ~ "no")) |> 
+  ungroup()
+```
+
 ## Fredrik (medium tissemand)
+
+```{r}
+
+```
 
 ## AlmaX
 
+```{r}
+
+```
+
 ## Jakob
 
+```{r}
+
+```
+
 ## Magnus
+
+```{r}
+
+```

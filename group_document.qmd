@@ -15,7 +15,6 @@ print("hello bitches")
 
 ### S215081 - Magnus
 
-<<<<<<< HEAD
 Jeg vil fra nu af tiltales MagnuX
 
 ```{r}
@@ -25,8 +24,7 @@ x+y
 ```
 
 ### S224991 - Alma
-=======
+
 ### S224991 - Almax
 
 Hej det er mig
->>>>>>> 957052e4e24c6f73ef4a2f0206e84d42070174c4

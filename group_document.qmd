@@ -11,6 +11,14 @@ Here is I. Jakob the admin
 print("hello bitches")
 ```
 
+#### New feature
+
+hey hey
+
+```{r}
+print("stuff for me.. for now")
+```
+
 ### S215049 - Fredrik
 
 ```{r}

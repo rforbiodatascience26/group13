@@ -1,8 +1,12 @@
 ---
 title: "Assignment07_g13"
 format: html
+  html: 
+    embed-resources: true
 editor: visual
-author: s224991 (Alma), s215081 (Magnus), s194659 (Jakob), s215049 (Fredrik)
+author: "s224991 (Alma), s215081 (Magnus), s194659 (Jakob), s215049 (Fredrik)"
+editor_options:
+  chunk_output_type: inline
 ---
 
 ```{r}
@@ -36,7 +40,7 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 load(file = str_c(raw_dir, data_file))
 ```
 
-## Data Wrangling (copy from last assignment)
+## Data Wrangling (copied from last assignment)
 
 ```{r}
 gravier_clean <- gravier |>
@@ -79,7 +83,28 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
 ```
 
 ```{r}
-
+gravier_estimates |> 
+  filter(is_significant == "yes") |> 
+  ggplot(
+    aes(x = estimate, 
+        y = fct_reorder(Gene, estimate))) +
+  
+  geom_point() +
+  
+  geom_errorbar(
+    aes(xmin = `conf.low`, 
+        xmax = `conf.high`)) +
+  
+  geom_vline(xintercept = 0) +
+  
+  theme_minimal() +
+  
+  labs(y = "",
+       x = "Estimates (95% CIs)",
+       title = "Genes Associated with Early Metastasis in Small Node-Negative Breast Carcinoma",
+       caption = "Data from DOI: 10.1002/gcc.20820") +
+  
+  theme(plot.title = element_text(hjust = 1))
 ```
 
 ## AlmaX

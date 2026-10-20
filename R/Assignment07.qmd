@@ -108,20 +108,68 @@ gravier_estimates |>
   theme(plot.title = element_text(hjust = 1), axis.text.y = element_text(size = 5), legend.position = "none")
 ```
 
-## AlmaX
+## **Analysis Question**
+
+### **What genes are significantly up- or down-regulated between the patients with/without early metastasis?**
+
+Several genes are significantly up- and down-regulated in patients with early metastasis as seen in both the forest plot as well as the volcano plot. The genes g1CNS507 and g1CNS91 are the most up- and down regulated genes respectively and therefore have a highly significant effect on early metastasis of breast cancer. Increased risk of early metastasis of small node-negative breast carcinoma is implied by the data in a significant down-regulation of the gene g1CNS507. However, the uncertainties are quite large for most of the significant genes as seen in the forest plot which urges the reader to not define which gene hold the single most weight in the analysis. A complete list of the significant genes can be seen below:
 
 ```{r}
-
+gravier_estimates |>
+  filter(is_significant == "yes")|>
+  pull(Gene)
 ```
 
-## Jakob - s194659 (change to informative header)
+## Volcano-plot analysis of significantly regulated genes
 
 ```{r}
-
+gravier_estimates |> 
+  
+  
+  ggplot(
+    aes(x=estimate, 
+        y = -log10(`p.value`), 
+        
+        # creating colour coding and matching labels for signif genes
+        colour = ifelse(is_significant == "no", "blue", "red"), 
+        label = ifelse(is_significant == "yes", Gene, ""))) +
+  
+  # visualize via scatter plot
+  geom_point(show.legend = F,
+             alpha = 0.5, 
+             size = 1) +
+  
+  # add labels to signif genes
+  geom_text_repel(size = 2, 
+                  show.legend = F, 
+                  max.overlaps = 20) +
+  
+  # add a horizontal line for y=0
+  geom_hline(yintercept = 0) +
+  
+  theme_minimal() +
+  
+  labs(y = "-log10(p)",
+       x = "Estimates",
+       title = "Genes Associated with Early Metastasis in Small Node-Negative Breast Carcinoma",
+       caption = "Data from DOI: 10.1002/gcc.20820",
+       subtitle = "Genes highlighted in turquoise were significant after multiple testing correction") +
+  
+  # centre plot title and subtitle
+  theme(plot.title = element_text(hjust = 1),
+        plot.subtitle = element_text(hjust = 1))
 ```
 
-## Magnus
+## Creating tidy data
 
-```{r}
+Working with data can be can be difficult, especially because everyone does it differently. Tidy data solves this problem. A "tidy" data set is defined by:
 
-```
+1.  Every variable must have its own column
+2.  Every observation must have its own row
+3.  Every variable must have its own cell
+
+By integrating these rules, data becomes much simpler and easier to work with.
+
+### Wrangling the data
+
+For this assignment, we will be working with the gravier data set, which looks at metastasis for breast cancer.

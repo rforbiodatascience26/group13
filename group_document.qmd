@@ -13,7 +13,7 @@ print("hello bitches")
 
 ### S215049 - Frederik
 
-### S215081 - Magnus
+### S215081 - MagnuX
 
 Jeg vil fra nu af tiltales MagnuX
 

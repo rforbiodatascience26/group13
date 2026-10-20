@@ -107,11 +107,9 @@ gravier_estimates |>
   theme(plot.title = element_text(hjust = 1))
 ```
 
-## AlmaX
+## **Analysis Question**
 
-# **Analysis Question**
-
-## **What genes are significantly up- or down-regulated between the patients with/without early metastasis?**
+### **What genes are significantly up- or down-regulated between the patients with/without early metastasis?**
 
 Several genes are significantly up- and down-regulated in patients with early metastasis as seen in both the forest plot as well as the volcano plot. The genes g1CNS507 and g1CNS91 are the most up- and down regulated genes respectively and therefore have a highly significant effect on early metastasis of breast cancer. Increased risk of early metastasis of small node-negative breast carcinoma is implied by the data in a significant down-regulation of the gene g1CNS507. However, the uncertainties are quite large for most of the significant genes as seen in the forest plot which urges the reader to not define which gene hold the single most weight in the analysis. A complete list of the significant genes can be seen below:
 

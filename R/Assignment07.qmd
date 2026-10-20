@@ -113,25 +113,31 @@ gravier_estimates |>
 
 ```
 
-## Jakob - s194659 (change to informative header)
+## Volcano-plot analysis of significantly regulated genes
 
 ```{r}
 gravier_estimates |> 
   
+  
   ggplot(
     aes(x=estimate, 
         y = -log10(`p.value`), 
+        
+        # creating colour coding and matching labels for signif genes
         colour = ifelse(is_significant == "no", "blue", "red"), 
         label = ifelse(is_significant == "yes", Gene, ""))) +
   
+  # visualize via scatter plot
   geom_point(show.legend = F,
              alpha = 0.5, 
              size = 1) +
   
+  # add labels to signif genes
   geom_text_repel(size = 2, 
                   show.legend = F, 
                   max.overlaps = 20) +
   
+  # add a horizontal line for y=0
   geom_hline(yintercept = 0) +
   
   theme_minimal() +
@@ -142,6 +148,7 @@ gravier_estimates |>
        caption = "Data from DOI: 10.1002/gcc.20820",
        subtitle = "Genes highlighted in turquoise were significant after multiple testing correction") +
   
+  # centre plot title and subtitle
   theme(plot.title = element_text(hjust = 1),
         plot.subtitle = element_text(hjust = 1))
 ```

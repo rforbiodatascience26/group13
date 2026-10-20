@@ -23,8 +23,6 @@ y <- 2
 x+y
 ```
 
-### S224991 - Alma
-
 ### S224991 - Almax
 
 Hej det er mig

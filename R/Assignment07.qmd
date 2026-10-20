@@ -35,7 +35,7 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 load(file = str_c(raw_dir, data_file))
 ```
 
-## Data Wrangling (copy from last assingment)
+## Data Wrangling (copy from last assignment)
 
 ```{r}
 gravier_clean <- gravier |>

@@ -109,8 +109,16 @@ gravier_estimates |>
 
 ## AlmaX
 
-```{r}
+# **Analysis Question**
 
+## **What genes are significantly up- or down-regulated between the patients with/without early metastasis?**
+
+Several genes are significantly up- and down-regulated in patients with early metastasis as seen in both the forest plot as well as the volcano plot. The genes g1CNS507 and g1CNS91 are the most up- and down regulated genes respectively and therefore have a highly significant effect on early metastasis of breast cancer. Increased risk of early metastasis of small node-negative breast carcinoma is implied by the data in a significant down-regulation of the gene g1CNS507. However, the uncertainties are quite large for most of the significant genes as seen in the forest plot which urges the reader to not define which gene hold the single most weight in the analysis. A complete list of the significant genes can be seen below:
+
+```{r}
+gravier_estimates |>
+  filter(is_significant == "yes")|>
+  pull(Gene)
 ```
 
 ## Volcano-plot analysis of significantly regulated genes
@@ -153,8 +161,16 @@ gravier_estimates |>
         plot.subtitle = element_text(hjust = 1))
 ```
 
-## Magnus
+## Creating tidy data
 
-```{r}
+Working with data can be can be difficult, especially because everyone does it differently. Tidy data solves this problem. A "tidy" data set is defined by:
 
-```
+1.  Every variable must have its own column
+2.  Every observation must have its own row
+3.  Every variable must have its own cell
+
+By integrating these rules, data becomes much simpler and easier to work with.
+
+### Wrangling the data
+
+For this assignment, we will be working with the gravier data set, which looks at metastasis for breast cancer.

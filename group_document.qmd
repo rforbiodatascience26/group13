@@ -24,8 +24,12 @@ print("hello bitches")
 
 ### S215049 - Frederik
 
+<<<<<<< HEAD
 
 ### S215081 - Magnus
+=======
+### S215081 - MagnuX
+>>>>>>> 7cc837d7ec2db64ad363408ae6a25b93dfabac1c
 
 Jeg vil fra nu af tiltales MagnuX
 

@@ -9,4 +9,12 @@ format: html
 
 ### S215081 - Magnus
 
+Jeg vil fra nu af tiltales MagnuX
+
+```{r}
+x <- 1
+y <- 2
+x+y
+```
+
 ### S224991 - Alma

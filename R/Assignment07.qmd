@@ -4,11 +4,10 @@ format: html
 editor: visual
 ---
 
-## 
-
 ```{r}
-{r}
-raw_dir <- "data/_raw/"
+library("tidyverse")
+
+raw_dir <- "../data/_raw/"
 data_file <- "gravier.RData"
 data_loc <- "https://github.com/ramhiser/datamicroarray/raw/master/data/"
 
@@ -28,3 +27,11 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 # Load the data
 load(file = str_c(raw_dir, data_file))
 ```
+
+## Fredrik (medium tissemand)
+
+## AlmaX
+
+## Jakob
+
+## Magnus

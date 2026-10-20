@@ -82,6 +82,24 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
   ungroup()
 ```
 
+## **Analysis Question**
+
+Having finalized the data wrangling, we are now ready to investigate which of the genes have been up- and down-regulated in patients with clinical signs of early metastasis.
+
+The column which is added last while preparing the data, called `is_significant,` allow us to distinguish between the genes whose expression have changed significantly, according to a threshold value of $\alpha = 0.05$. This allow us to display only those genes of all 2905, that are significantly regulated, e.g. in a forest plot as seen below, where we display the $log_2(expression)$ of each gene with a corresponding 95% confidence interval (95% CIs). This shows qualitatively, how these 43 genes differ from each other, without overwhelming the viewer with the remaining 2862 observations. The volcano plot that is seen further below gives an overview of the overall distribution of the expression of all genes.
+
+In addition to the plot that was produced last week, we have added a color scaling to the data points, which enables a deciphering of any tendencies in how the significance is distributed.
+
+```{r}
+no_sig <- gravier_estimates |> 
+  filter(is_significant == "yes") |> 
+  count() |> 
+  pull()
+no_sig
+
+count(gravier_estimates) |> pull() - no_sig
+```
+
 ```{r}
 gravier_estimates |> 
   filter(is_significant == "yes") |> 
@@ -91,10 +109,13 @@ gravier_estimates |>
   
   geom_errorbar(
     aes(xmin = `conf.low`, 
-        xmax = `conf.high`,
-        color = estimate)) +  
+        xmax = `conf.high`), alpha = 0.3) +  
   
-  geom_point(aes(color = estimate)) + scale_colour_gradient(low = "red", high = "green") +
+  geom_point(aes(color = p.value)) + 
+  
+  xlim(-0.3,0.3) +
+  
+  scale_colour_viridis_c("p-value", option = "plasma", direction = 1) +
 
   geom_vline(xintercept = 0, color = "grey") +
   
@@ -102,13 +123,14 @@ gravier_estimates |>
   
   labs(y = "Genes",
        x = "Estimates (95% CIs)",
-       title = "Genes Associated with Early Metastasis in Small Node-Negative Breast Carcinoma",
+       title = "Genes Associated with Early Metastasis \nin Small Node-Negative Breast Carcinoma",
        caption = "Data from DOI: 10.1002/gcc.20820") +
   
-  theme(plot.title = element_text(hjust = 1), axis.text.y = element_text(size = 5), legend.position = "none")
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        axis.text.y = element_text(size = 5),
+        legend.title.align = 0.5,
+        panel.grid.minor = element_blank())
 ```
-
-## **Analysis Question**
 
 ### **What genes are significantly up- or down-regulated between the patients with/without early metastasis?**
 

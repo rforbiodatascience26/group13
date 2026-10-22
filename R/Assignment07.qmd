@@ -40,22 +40,44 @@ if( !file.exists(str_c(raw_dir, data_file)) ){
 load(file = str_c(raw_dir, data_file))
 ```
 
-## Data Wrangling (copied from last assignment)
+## Creating tidy data
+
+Working with data can be can be difficult, especially because everyone does it differently. Tidy data solves this problem. A "tidy" data set is defined by:
+
+1.  Every variable must have its own column
+2.  Every observation must have its own row
+3.  Every variable must have its own cell
+
+By integrating these rules, data becomes much simpler and easier to work with.
+
+### Wrangling the data
+
+For this assignment, we will be working with the gravier data set, which examines metastasis for breast cancer. You will see below, how the data is wrangled to become tidy, with additional calculations for later analysis.
+
+#### Data Wrangling
 
 ```{r}
 gravier_clean <- gravier |>
   bind_cols() |>
   as_tibble()
 
-gravier_clean_aug <- gravier_clean |>
+
+gravier_clean_aug <- gravier_clean |> 
   mutate(y = case_when(y == "poor" ~ 1,
                        y == "good" ~ 0)) |> 
   relocate(early_metastasis = y)
+
+
+# Making the data tidy
+# -------------------------------------------------
 
 gravier_clean_aug_long <- gravier_clean_aug |> 
   pivot_longer(cols = -early_metastasis,
                names_to = "Gene",
                values_to = "log2_expr_level")
+
+# -------------------------------------------------
+
 
 gravier_clean_aug_long_nested <- gravier_clean_aug_long |> 
   group_by(Gene) |> 
@@ -81,6 +103,22 @@ gravier_estimates <- gravier_clean_aug_long_nested |>
                                       `q.value` >= 0.05 ~ "no")) |> 
   ungroup()
 ```
+
+In the chunk above, the original dataframe is pivoted to be long, creating the tidy data set that we want. By doing this, the data goes from this:
+
+```{r}
+gravier_clean_aug %>% 
+  slice_sample(n = 10)
+```
+
+After using the function pivot_longer (outlined in the chunk above), the data is now tidy, and looks like this:
+
+```{r}
+gravier_clean_aug_long %>% 
+  slice_sample(n=10)
+```
+
+At this point, the rules for a tidy data set is met, and further analysis can be done.
 
 ## **Analysis Question**
 
@@ -181,17 +219,3 @@ gravier_estimates |>
   theme(plot.title = element_text(hjust = 1),
         plot.subtitle = element_text(hjust = 1))
 ```
-
-## Creating tidy data
-
-Working with data can be can be difficult, especially because everyone does it differently. Tidy data solves this problem. A "tidy" data set is defined by:
-
-1.  Every variable must have its own column
-2.  Every observation must have its own row
-3.  Every variable must have its own cell
-
-By integrating these rules, data becomes much simpler and easier to work with.
-
-### Wrangling the data
-
-For this assignment, we will be working with the gravier data set, which looks at metastasis for breast cancer.
